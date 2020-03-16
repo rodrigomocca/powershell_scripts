@@ -18,6 +18,7 @@ param([string] $user,
     Write-Output "Backup ready."
     Write-Output "Copying backup to $($destination)..."
     docker cp "$($container):$($output)" $destination
+    docker exec $container "rm $($output)"
 }
 
 Export-ModuleMember -Function DockerSQLBackup
